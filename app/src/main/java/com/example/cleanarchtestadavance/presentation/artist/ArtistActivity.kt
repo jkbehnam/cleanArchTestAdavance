@@ -1,12 +1,12 @@
-package com.example.cleanarchtestadavance.presentation
+package com.example.cleanarchtestadavance.presentation.artist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cleanarchtestadavance.R
 
-class TvShowActivity : AppCompatActivity() {
+class ArtistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tv_show)
+        setContentView(R.layout.activity_artist)
     }
 }

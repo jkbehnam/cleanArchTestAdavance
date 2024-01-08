@@ -3,10 +3,12 @@ package com.example.cleanarchtestadavance.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.cleanarchtestadavance.R
 import com.example.cleanarchtestadavance.databinding.ActivityMainBinding
+import com.example.cleanarchtestadavance.presentation.artist.ArtistActivity
+import com.example.cleanarchtestadavance.presentation.movie.MovieActivity
+import com.example.cleanarchtestadavance.presentation.tvshow.TvShowActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
