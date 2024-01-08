@@ -1,4 +1,4 @@
-package com.example.cleanarchtestadavance.data.repository.movie
+package com.example.cleanarchtestadavance.data.repository.movie.datasource
 
 import com.example.cleanarchtestadavance.data.model.movie.Movie
 import com.example.cleanarchtestadavance.data.model.movie.MovieList

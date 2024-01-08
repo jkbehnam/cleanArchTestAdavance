@@ -1,7 +1,9 @@
 package com.example.cleanarchtestadavance.data.repository.movie
 
 import com.example.cleanarchtestadavance.data.model.movie.Movie
-import com.example.cleanarchtestadavance.data.model.movie.MovieList
+import com.example.cleanarchtestadavance.data.repository.movie.datasource.MovieCacheDataSource
+import com.example.cleanarchtestadavance.data.repository.movie.datasource.MovieLocalDataSource
+import com.example.cleanarchtestadavance.data.repository.movie.datasource.MovieRemoteDataSource
 import com.example.cleanarchtestadavance.domain.repository.MovieRepository
 
 class movieRepositoryImpl(
@@ -12,14 +14,18 @@ class movieRepositoryImpl(
 
 
     override suspend fun getMovies(): List<Movie>? {
-        TODO("Not yet implemented")
+        return getMoviesFromCashe()
     }
 
     override suspend fun updateMovies(): List<Movie>? {
-        TODO("Not yet implemented")
+        val newListOfMovie=getMovieFromAPI()
+        movieLocalDataSource.clearAll()
+        movieLocalDataSource.saveMovieToDB(newListOfMovie)
+        movieCacheDataSource.saveMovieToCache(newListOfMovie)
+        return newListOfMovie
     }
 
-    suspend fun getMovieFromAPI(): List<Movie> {
+    private suspend fun getMovieFromAPI(): List<Movie> {
         lateinit var movieList: List<Movie>
 
         try {
@@ -34,12 +40,12 @@ class movieRepositoryImpl(
         return movieList
     }
 
-    suspend fun getmoviesFromDB(): List<Movie> {
+    private suspend fun getMoviesFromDB(): List<Movie> {
 
         lateinit var movieList: List<Movie>
 
         try {
-            movieList = movieLocalDataSource.getMvieFromDB()
+            movieList = movieLocalDataSource.getMovieFromDB()
 
         } catch (exp: Exception) {
         }
@@ -52,7 +58,29 @@ class movieRepositoryImpl(
         }
         return movieList
     }
-    suspend fun getMoviesFromCashe(){
-        
+    suspend fun getMoviesFromCashe():List<Movie>{
+
+        lateinit var movieList: List<Movie>
+
+        try {
+            movieList=movieCacheDataSource.getMoviesFromCache()
+
+        }catch (exp:Exception){
+
+
+        }
+
+        if (movieList.size>0)
+        {
+            return movieList
+
+        }else{
+            movieList=getMoviesFromDB()
+            movieCacheDataSource.saveMovieToCache(movieList)
+        }
+
+        return movieList
+
+
     }
 }
