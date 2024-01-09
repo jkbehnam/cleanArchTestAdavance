@@ -6,7 +6,7 @@ import com.example.cleanarchtestadavance.data.repository.movie.datasource.MovieL
 import com.example.cleanarchtestadavance.data.repository.movie.datasource.MovieRemoteDataSource
 import com.example.cleanarchtestadavance.domain.repository.MovieRepository
 
-class movieRepositoryImpl(
+class MovieRepositoryImpl(
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val movieCacheDataSource: MovieCacheDataSource,
     private val movieLocalDataSource: MovieLocalDataSource

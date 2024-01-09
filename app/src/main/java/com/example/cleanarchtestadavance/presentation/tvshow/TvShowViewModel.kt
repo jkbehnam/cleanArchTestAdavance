@@ -9,17 +9,17 @@ import com.example.cleanarchtestadavance.domain.usecase.UpdateTvShowsUseCase
 
 class TvShowViewModel(
 
-  val getTvShowsUseCase: GetTvShowsUseCase,
+    val getTvShowsUseCase: GetTvShowsUseCase,
     val updateTvShowsUseCase: UpdateTvShowsUseCase
-):ViewModel() {
+) : ViewModel() {
 
-    fun getTvShows()= liveData {
-        val tvShows=getTvShowsUseCase.execute()
+    fun getTvShows() = liveData {
+        val tvShows = getTvShowsUseCase.execute()
         emit(tvShows)
     }
 
-    fun updateTvShow()= liveData {
-        val tvShows=updateTvShowsUseCase.execute()
+    fun updateTvShow() = liveData {
+        val tvShows = updateTvShowsUseCase.execute()
         emit(tvShows)
     }
 }
